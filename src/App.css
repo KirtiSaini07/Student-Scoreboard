@@ -1,0 +1,431 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* ─── Reset & Base ─────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #1a0a1e;
+  color: #f5f0ff;
+  min-height: 100vh;
+}
+
+/* ─── App Wrapper ────────────────────────────────────── */
+.app-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+/* ─── Header ─────────────────────────────────────────── */
+.header {
+  background: transparent;
+  padding: 2.5rem 2.5rem 1.75rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #d4187f 0%, #e8873a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+  display: inline-block;
+}
+
+.header-subtitle {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 0.45rem;
+}
+
+/* ─── Stats Bar ──────────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4rem 1rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+}
+
+/* Yellow — Total */
+.stat-card.total {
+  background: rgba(245, 166, 35, 0.15);
+  border-color: rgba(245, 166, 35, 0.25);
+}
+
+/* White-ish — Passed */
+.stat-card.pass {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Pink — Failed */
+.stat-card.fail {
+  background: rgba(200, 24, 120, 0.12);
+  border-color: rgba(200, 24, 120, 0.22);
+}
+
+/* Yellow-pink blend — Avg */
+.stat-card.avg {
+  background: rgba(255, 180, 50, 0.12);
+  border-color: rgba(255, 180, 50, 0.25);
+}
+
+.stat-num {
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.stat-card.total .stat-num {
+  color: #f5c842;
+}
+
+.stat-card.pass .stat-num {
+  color: #ffffff;
+}
+
+.stat-card.fail .stat-num {
+  color: #e8609f;
+}
+
+.stat-card.avg .stat-num {
+  color: #ffcc55;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+/* ─── Main Content — FLEXBOX ─────────────────────────── */
+.main-content {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* Student Records takes up remaining space */
+.main-content .table-wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+/* Add Student form has a fixed width */
+.main-content .form-wrapper {
+  flex: 0 0 320px;
+  width: 320px;
+}
+
+/* ─── Section Title ──────────────────────────────────── */
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffb3d9;
+  margin-bottom: 1rem;
+  letter-spacing: -0.2px;
+}
+
+/* ─── Table Wrapper ──────────────────────────────────── */
+.table-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(14px);
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+/* ─── Student Table ──────────────────────────────────── */
+.student-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.student-table thead tr {
+  background: rgba(200, 24, 120, 0.12);
+}
+
+.student-table th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-weight: 700;
+  color: #ffb3d9;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.student-table td {
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
+}
+
+.student-row {
+  transition: background 0.2s ease;
+}
+
+.student-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.student-row:last-child td {
+  border-bottom: none;
+}
+
+/* Pink for pass, yellow for fail border */
+.row-pass {
+  border-left: 3px solid #ff6eb4;
+}
+
+.row-fail {
+  border-left: 3px solid #f5c842;
+}
+
+.cell-index {
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  width: 40px;
+}
+
+.cell-name {
+  font-weight: 600;
+  color: #fff;
+}
+
+.cell-score {
+  font-weight: 700;
+  color: #ffe066;
+  font-size: 1rem;
+}
+
+/* ─── Update Group ───────────────────────────────────── */
+.update-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.score-input {
+  width: 70px;
+  padding: 0.4rem 0.6rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.score-input:focus {
+  border-color: #c8187f;
+  box-shadow: 0 0 0 3px rgba(200, 24, 120, 0.18);
+}
+
+.update-btn {
+  padding: 0.4rem 0.85rem;
+  background: linear-gradient(135deg, #c8187f, #e0882e);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 2px 10px rgba(200, 24, 120, 0.28);
+}
+
+.update-btn:hover {
+  opacity: 0.88;
+  transform: scale(1.05);
+}
+
+.update-btn:active {
+  transform: scale(0.97);
+}
+
+/* ─── Status Badge ───────────────────────────────────── */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+/* Pink = Pass */
+.badge-pass {
+  background: rgba(200, 24, 120, 0.12);
+  color: #e8609f;
+  border: 1px solid rgba(200, 24, 120, 0.28);
+}
+
+/* Yellow = Fail */
+.badge-fail {
+  background: rgba(245, 200, 35, 0.12);
+  color: #f5c842;
+  border: 1px solid rgba(245, 200, 35, 0.3);
+}
+
+/* ─── Empty Message ──────────────────────────────────── */
+.empty-msg {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 2rem !important;
+  font-style: italic;
+}
+
+/* ─── Add Student Form ───────────────────────────────── */
+.form-wrapper {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(14px);
+  position: sticky;
+  top: 1.5rem;
+}
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  padding: 0.65rem 0.9rem;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.65rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.form-input:focus {
+  border-color: #c8187f;
+  box-shadow: 0 0 0 3px rgba(200, 24, 120, 0.18);
+}
+
+.form-error {
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.3);
+  border-radius: 0.6rem;
+  color: #f5c842;
+  font-size: 0.83rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.submit-btn {
+  padding: 0.75rem;
+  background: linear-gradient(135deg, #c8187f 0%, #e0882e 100%);
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(200, 24, 120, 0.3);
+  margin-top: 0.25rem;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(200, 24, 120, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .main-content .form-wrapper {
+    flex: unset;
+    width: 100%;
+    position: static;
+  }
+
+  .stats-bar {
+    flex-wrap: wrap;
+  }
+
+  .stat-card {
+    flex: 1 1 calc(50% - 0.5rem);
+  }
+
+  .header-title {
+    font-size: 1.4rem;
+  }
+
+  .header-icon {
+    font-size: 2rem;
+  }
+}
