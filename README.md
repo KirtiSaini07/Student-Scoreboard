@@ -25,4 +25,4 @@ Create a Student Scoreboard Application that allows users to:
 ---
 
 ## 📌Live Demo
--- https://studentscoreboardd.netlify.app/
+https://studentscoreboardd.netlify.app/
