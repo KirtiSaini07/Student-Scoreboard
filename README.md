@@ -21,3 +21,8 @@ Create a Student Scoreboard Application that allows users to:
 - View all students in a clean table
 - Real-time score updates
 - Simple and intuitive UI
+
+---
+
+## 📌Live Demo
+-- https://studentscoreboardd.netlify.app/
